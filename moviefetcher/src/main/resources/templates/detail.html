@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${movie.title}">Film</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --border: #222222;
+            --accent: #e8c547;
+            --text: #f0ede6;
+            --muted: #666;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.4;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo span { color: var(--accent); }
+
+        .back {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back:hover { color: var(--accent); }
+
+        .detail {
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .title-block {
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .title-block h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            letter-spacing: 0.03em;
+            line-height: 1;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--muted);
+            margin-top: 0.5rem;
+            font-weight: 300;
+        }
+
+        .link-accent {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .link-accent:hover {
+            text-decoration: underline;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            background: var(--surface);
+            padding: 1rem 1.2rem;
+        }
+
+        .meta-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .meta-value.accent {
+            color: var(--accent);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 0.05em;
+        }
+
+        .overview-block {
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .overview-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .overview-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 300;
+            color: #ccc;
+        }
+
+        .genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .genre-tag {
+            border: 1px solid var(--border);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="/" class="logo">Movie<span>Fetcher</span></a>
+        <a href="javascript:history.back()" class="back">← Indietro</a>
+    </div>
+
+    <div class="detail">
+        <div class="title-block">
+            <h1 th:text="${movie.title}"></h1>
+            <p class="tagline" th:text="${movie.tagline}" th:if="${movie.tagline != null and !movie.tagline.isEmpty()}"></p>
+        </div>
+
+        <div class="meta-grid">
+            <div class="meta-item">
+                <div class="meta-label">Voto</div>
+                <div class="meta-value accent" th:text="${#numbers.formatDecimal(movie.voteAverage, 1, 1)} + ' / 10'"></div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Data uscita</div>
+                <div class="meta-value" th:text="${movie.releaseDate}"></div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Durata</div>
+                <div class="meta-value" th:text="${movie.runtime} + ' min'"></div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Stato</div>
+                <div class="meta-value" th:text="${movie.status}"></div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Budget</div>
+                <div class="meta-value" th:text="${movie.budget > 0 ? '$' + #numbers.formatInteger(movie.budget, 1, 'COMMA') : 'N/D'}"></div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Incasso</div>
+                <div class="meta-value" th:text="${movie.revenue > 0 ? '$' + #numbers.formatInteger(movie.revenue, 1, 'COMMA') : 'N/D'}"></div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Cerca</div>
+                <a class="meta-value link-accent"
+                th:href="@{'https://www.google.com/search?q=' + ${movie.title}}"
+                th:text="${movie.title}"
+                target="_blank">
+                </a>
+            </div>
+        </div>
+
+        <div class="genres" th:if="${movie.genres != null and !movie.genres.isEmpty()}">
+            <span th:each="genre : ${movie.genres}" class="genre-tag" th:text="${genre.name}"></span>
+        </div>
+
+        <div class="overview-block" th:if="${movie.overview != null and !movie.overview.isEmpty()}">
+            <div class="overview-label">Trama</div>
+            <p class="overview-text" th:text="${movie.overview}"></p>
+        </div>
+    </div>
+</body>
+</html>

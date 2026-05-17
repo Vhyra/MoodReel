@@ -1,0 +1,27 @@
+services:
+  spring-app:
+    build: ./moviefetcher
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./log:/app/log"
+    env_file:
+      - .env  # Carica automaticamente le chiavi dal tuo file .env locale
+    environment:
+      - SPRING_PROFILES_ACTIVE=local
+      - ML_SERVICE_URL=http://fastapi-ml:8000
+    depends_on:
+      - fastapi-ml
+
+  fastapi-ml:
+    build: ./movieml
+    ports:
+      - "8000:8000"
+    volumes:
+      # Monta la cartella del modello dal tuo PC al container
+      - ./movieml/model/sentence_transformer:/app/models/sentence_transformer
+    environment:
+      - MODEL_PATH=/app/models/sentence_transformer
+      #- HF_HUB_OFFLINE=1  # Forza HuggingFace a non usare internet
+    env_file:
+      - .env
