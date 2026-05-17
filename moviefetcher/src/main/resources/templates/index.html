@@ -269,38 +269,38 @@
     <div class="center">
         <div class="hero">
         <div class="logo">Movie<span>Fetcher</span></div>
-        <p class="tagline">Cerca qualsiasi film</p>
+        <p class="tagline">Search for a movie</p>
     </div>
 
         <div class="search-container">
             <div class="search-block">
-                <span class="search-label">Cerca per titolo</span>
+                <span class="search-label">Title</span>
                 <form th:action="@{/search}" method="get">
                     <div class="search-row">
                         <input type="text" name="title" placeholder="es. Inception, Star Wars...">
-                        <button type="submit">Cerca</button>
+                        <button type="submit">Go</button>
                     </div>
                 </form>
             </div>
 
-            <div class="divider">oppure</div>
+            <div class="divider">Or</div>
 
             <div class="search-block">
-                <span class="search-label">Cerca per ID</span>
+                <span class="search-label">Movie ID</span>
                 <form th:action="@{/movie/__${id}__}" method="get" onsubmit="handleIdSearch(event, this)">
                     <div class="search-row">
                         <input type="number" id="movieId" placeholder="es. 11, 550, 27205...">
-                        <button type="submit">Vai</button>
+                        <button type="submit">Go</button>
                     </div>
                 </form>
             </div>
             
-            <div class="divider">oppure</div>
+            <div class="divider">Or</div>
 
             <div class="button-row">
-                <a th:href="@{/feeling}" class="inspire-btn">Ispirami</a>
-                <a th:href="@{/discover}" class="inspire-btn">Scopri</a>
-                <a th:href="@{/soon}" class="inspire-btn">Soon</a>
+                <a th:href="@{/feeling}" class="inspire-btn">Mood Reel</a>
+                <!-- <a th:href="@{/discover}" class="inspire-btn">Scopri</a> -->
+                <!-- <a th:href="@{/soon}" class="inspire-btn">Soon</a> -->
             </div>
 
         </div>

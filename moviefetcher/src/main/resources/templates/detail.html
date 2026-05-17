@@ -182,7 +182,7 @@
 <body>
     <div class="topbar">
         <a href="/" class="logo">Movie<span>Fetcher</span></a>
-        <a href="javascript:history.back()" class="back">← Indietro</a>
+        <a href="javascript:history.back()" class="back">← Back</a>
     </div>
 
     <div class="detail">
@@ -193,19 +193,19 @@
 
         <div class="meta-grid">
             <div class="meta-item">
-                <div class="meta-label">Voto</div>
+                <div class="meta-label">Score</div>
                 <div class="meta-value accent" th:text="${#numbers.formatDecimal(movie.voteAverage, 1, 1)} + ' / 10'"></div>
             </div>
             <div class="meta-item">
-                <div class="meta-label">Data uscita</div>
+                <div class="meta-label">Release date</div>
                 <div class="meta-value" th:text="${movie.releaseDate}"></div>
             </div>
             <div class="meta-item">
-                <div class="meta-label">Durata</div>
+                <div class="meta-label">Runtime</div>
                 <div class="meta-value" th:text="${movie.runtime} + ' min'"></div>
             </div>
             <div class="meta-item">
-                <div class="meta-label">Stato</div>
+                <div class="meta-label">State</div>
                 <div class="meta-value" th:text="${movie.status}"></div>
             </div>
             <div class="meta-item">
@@ -213,11 +213,11 @@
                 <div class="meta-value" th:text="${movie.budget > 0 ? '$' + #numbers.formatInteger(movie.budget, 1, 'COMMA') : 'N/D'}"></div>
             </div>
             <div class="meta-item">
-                <div class="meta-label">Incasso</div>
+                <div class="meta-label">Revenue</div>
                 <div class="meta-value" th:text="${movie.revenue > 0 ? '$' + #numbers.formatInteger(movie.revenue, 1, 'COMMA') : 'N/D'}"></div>
             </div>
             <div class="meta-item">
-                <div class="meta-label">Cerca</div>
+                <div class="meta-label">Go</div>
                 <a class="meta-value link-accent"
                 th:href="@{'https://www.google.com/search?q=' + ${movie.title}}"
                 th:text="${movie.title}"

@@ -36,10 +36,13 @@ out/
 ### VS Code ###
 .vscode/
 
-application-local.yml
-log/log.txt
+log.txt
 starter.bat
 stopper.bat
 .env
-movieml/model/sentence_transformer/
-movieml/model/embeddings.npy
+sentence_transformer/
+embeddings.npy
+movies_indexed.csv
+movies_clean.csv
+__pycache__/
+*.pyc

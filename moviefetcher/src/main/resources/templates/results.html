@@ -193,13 +193,13 @@
         <form th:action="@{/search}" method="get">
             <div class="search-row">
                 <input type="text" name="title" th:value="${query}" placeholder="Nuova ricerca...">
-                <button type="submit">Cerca</button>
+                <button type="submit">Go</button>
             </div>
         </form>
     </div>
 
     <div class="results-header">
-        <h1>Risultati per <span th:text="${query}"></span></h1>
+        <h1>Results <span th:text="${query}"></span></h1>
         <p class="count" th:text="${movies.size()} + ' film trovati'"></p>
     </div>
 
@@ -215,7 +215,7 @@
     </div>
 
     <div class="empty" th:if="${#lists.isEmpty(movies)}">
-        Nessun risultato trovato
+        No results
     </div>
 </body>
 </html>

@@ -30,7 +30,7 @@ public class MovieService {
         .uri(uriBuilder -> uriBuilder
             .path("/search/movie")
             .queryParam("query", title)
-            .queryParam("language","it-IT")
+            .queryParam("language","en-EN")
             .build()
         )
         .retrieve()

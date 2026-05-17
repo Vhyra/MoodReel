@@ -199,18 +199,18 @@
 </head>
 <body>
     <div class="hero">
-        <div class="logo">Cosa cerchi?</span></div>
-        <p class="tagline">Descrivi le sensazioni che vorresti trovare nel film</p>
+        <div class="logo">What do you want to feel?</span></div>
+        <p class="tagline">Describe how you want to feel watching a movie</p>
     </div>
 
     <div class="search-container">
         <div class="search-block">
-            <span class="search-label">Descrizione delle emozioni</span>
+            <span class="search-label">Describe the feelings</span>
             <form th:action="@{/recommend}" method="post">
                 <div class="search-row">
                     <textarea id="feeling" name="text" placeholder="es. Epic space battles..."
                         rows="5" required></textarea>
-                    <button type="submit">Cerca</button>
+                    <button type="submit">Go</button>
                 </div>
             </form>
         </div>
