@@ -39,7 +39,9 @@ df = pd.read_parquet("hf://datasets/AiresPucrs/tmdb-5000-movies/data/train-00000
 nltk.download("stopwords", quiet=True)
 STOPWORDS = set(stopwords.words("english"))
 lemmatizer = WordNetLemmatizer()
-EMOTIONS = ["fear", "anger", "anticipation", "surprise", "sadness", "joy", "disgust", "positive", "negative"]
+EMOTIONS = ["fear", "anger", "anticipation", "surprise", "sadness", "joy", "disgust"]
+
+# positive e negative rimosse perché troppo generiche, vedi notebook con analisi
 
 language_map = {
     "en": "english",
