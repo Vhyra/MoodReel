@@ -1,4 +1,4 @@
-# 🎬 MoodReel
+# MoodReel
 
 > Find movies based on the emotions you want to feel.
 
@@ -129,8 +129,10 @@ docker compose down
 
 ```env
 # .env.example
-TMDB_API_KEY=
-TMDB_BASE_URL=
+API_EXTERNAL_URL=https://api.themoviedb.org/3
+API_EXTERNAL_AUTH_TOKEN=LONG-TOKEN
+API_EXTERNAL_KEY=SHORT-KEY
+ML_SERVICE_URL=ML-URL:PORT
 ```
 
 ---
