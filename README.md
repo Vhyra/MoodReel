@@ -94,6 +94,7 @@ This step downloads the model, pre-computes movie embeddings and creates the mov
 Run it once before the first launch:
 ```
 cd preprocessor
+cd data
 pip install -r requirements.txt
 python prepare.py
 python builder.py
@@ -110,8 +111,8 @@ cp .env.example .env
 **4. Build and Run**
 
 ```
-docker compose build (it builds the docker's images)
-docker compose up (to run the containers)
+docker-compose build (it builds the docker's images)
+docker-compose up (to run the containers)
 ```
 
 App will be available at `http://<your-machine-ip>:8080`

@@ -124,9 +124,7 @@ df[["id",
     "surprise", 
     "sadness", 
     "joy", 
-    "disgust", 
-    "positive", 
-    "negative"]
+    "disgust"]
     ].to_csv("movies_clean.csv", index=False)
 
 print(f"Dataset ready: {len(df)} film")

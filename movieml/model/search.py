@@ -28,7 +28,7 @@ embeddings = np.load("model/embeddings.npy")
 df = pd.read_csv("model/movies_indexed.csv")
 lemmatizer = WordNetLemmatizer()
 
-EMOTIONS = ["fear", "anger", "anticipation", "surprise", "sadness", "joy", "disgust", "positive", "negative"]
+EMOTIONS = ["fear", "anger", "anticipation", "surprise", "sadness", "joy", "disgust"]
 
 def recommend(query, top_n=10):
 
@@ -68,9 +68,9 @@ def recommend(query, top_n=10):
         matching_pct = round((matching_words / total_words * 100) if total_words > 0 else 0, 2)
 
         print(f"{title}")
-        print(f"  Similarità:      {similarity_pct}%")
-        print(f"  Parole comuni:   {matching_words}/{total_words} ({matching_pct}%)")
-        print(f"  Parole trovate:  {common_words}\n")
+        print(f"  Similarity:      {similarity_pct}%")
+        print(f"  Common words:   {matching_words}/{total_words} ({matching_pct}%)")
+        print(f"  Matching words:  {common_words}\n")
 
         results.append({
             "title": df.iloc[i]["title"]
